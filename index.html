@@ -21,6 +21,11 @@
 			  float: right;
 			}
 			
+			.done-true {
+				text-decoration: line-through;
+				color: grey;
+			}
+			
 		</style>
 	</head>
 	
@@ -28,22 +33,33 @@
 		<div class="container">
 		    <div class="form-group">
 				<h1>To-Do <small>List</small></h1>
-				<form role="form" class="form-inline">
-					<input type="text" class="form-control" placeholder="Sua tarefa" name="task">
-					<input type="text" class="form-control" placeholder="Prioridade" name="task">
+				
+				<form role="form" class="form-inline" ng-controller="TodoFormController as fromCtrl" ng-submit="addTodo()">
+					<input type="text" class="form-control" placeholder="Sua tarefa" name="task" ng-model="descricao">
+					<input type="text" class="form-control" placeholder="Prioridade" name="task" ng-model="prioridade">
 					<input type="submit" value="Adicionar" class="btn btn-primary">
-				</form>
+				</form>  
+				
 			</div>
 			<table class="table">
 				<tr>
 					<th style="text-align:center;">Prioridade</th>
 					<th>Descricao</th>
 					<th></th>
+					<th></th>
 				</tr>
-				<tr ng-repeat="item in toDo.itens">
-					<td style="text-align:center;">{{item.prioridade}}</td>
-					<td>{{item.descricao}}</td>
-					<td><a href='#' class='close' aria-hidden='true'>&times;</a></td>
+				<tr ng-repeat="item in toDo.itens | orderBy:'prioridade'">
+					<td style="text-align:center;" >{{item.prioridade}}</td>
+					<td class="done-{{item.feito}}">{{item.descricao}}</td>
+					<td>
+						<button type="button" class="btn btn-default btn-sm" ng-click="menorPrioridade(item)">
+						  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn btn-default btn-sm" ng-click="maiorPrioridade(item)">
+						  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						</button>
+					</td>
+					<td><input type="checkbox" ng-model="item.feito"></td>
 				</tr>
 			</table>
 		</div>
