@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<HTML>
+	<head ng-app="todo">
+		
+		<title>ToDo com Angular</title>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<style>
+			form {
+			    display: inline-block;
+			}
+			.form-group {
+			    text-align: center;
+			    padding-bottom: 25px;
+			}
+			#todo {
+			    margin: 0 auto;
+			    width: 500px;
+			}
+
+			a.close {
+			  float: right;
+			}
+		</style>
+	</head>
+	
+	<body ng-controller="TodoController as toDo">
+	    <div class="form-group">
+	      <h1>To-Do <small>List</small></h1>
+		    <form role="form">
+		        <input type="text" class="form-control" placeholder="Sua tarefa" name="task">
+		    </form>
+		    <button type="button" class="btn btn btn-primary">Add</button>
+		 </div>
+		 
+	    <ul class="list-unstyled" id="todo">
+			<li> {{toDo.item.descricao}}
+				<a href='#' class='close' aria-hidden='true'>&times;</a>
+			</li> 
+		</ul>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+	</body>
+	
+</HTML>
+
+
