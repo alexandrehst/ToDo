@@ -2,14 +2,26 @@
 	var app = angular.module('todo', []);
 	
 	app.controller('TodoController', function(){
-		this.item = aFazer;
+		this.itens = aFazer;
 	});
 	
-	var aFazer = {
-		descricao: 'Comprar leite e p√£o',
-		prioridade: 1,
-		feito: false,
-	}
+	var aFazer = [
+		{
+			descricao: 'Comprar leite e p„o',
+			prioridade: 1,
+			feito: false,
+		},
+		{
+			descricao: 'Estudar Angular',
+			prioridade: 1,
+			feito: false,
+		},
+		{
+			descricao: 'Jogar Battlefield',
+			prioridade: 2,
+			feito: false,
+		}
+	];
 	
 })();
 
