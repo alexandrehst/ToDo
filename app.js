@@ -22,7 +22,7 @@
 		$scope.addTodo = function() {
 			
 			$scope.itens.push( {descricao: $scope.descricao,
-								prioridade: parseInt($scope.prioridade),  // parseInt transforma em inteiro para ordenar
+							   prioridade: $scope.prioridade,
 							   feito:false} );
 							   
 		   $scope.descricao = '';
@@ -31,6 +31,15 @@
 		}
 		
 	}]);
+	
+	//Diretiva
+	app.directive('itemDescricao', function () {
+		console.log('Na diretiva');
+	    return {
+	        restrict: 'A',
+	        templateUrl: 'item-descricao.html'
+	    }
+	});
 
 	
 	

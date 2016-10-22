@@ -26,6 +26,11 @@
 				color: grey;
 			}
 			
+			.bordas div{
+			    border-bottom:1px solid #999;
+			}
+			
+			
 		</style>
 	</head>
 	
@@ -41,6 +46,34 @@
 				</form>  
 				
 			</div>
+			<!--
+			<div class="row well well-sm" ><strong>
+			  <div class="col-md-2"></div>
+			  <div class="col-md-1 text-center">Prioridade</div>
+			  <div class="col-md-4">Descrição</div> 
+			  <div class="col-md-1 text-center">Feito</div>
+			  <div class="col-md-2" style="text-align:center;"></div>
+			  <div class="col-md-2"></div>
+			</strong></div>
+			
+			<div class="row" ng-repeat="item in toDo.itens | orderBy:'prioridade'">
+			  <div class="col-md-2"></div>
+			  <div class="col-md-1 text-center" >{{item.prioridade}}</div>
+			  <div class="col-md-4"><spam class="done-{{item.feito}}">{{item.descricao}}</spam></div> 
+			  <div class="col-md-1 text-center"><input type="checkbox" ng-model="item.feito"></div>
+			  <div class="col-md-2">
+				<button type="button" class="btn btn-default btn-sm" ng-click="menorPrioridade(item)">
+				  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-default btn-sm" ng-click="maiorPrioridade(item)">
+				  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				</button>
+			  </div>
+			  <div class="col-md-2"></div>
+			</div>
+		-->
+			
+			
 			<table class="table">
 				<tr>
 					<th style="text-align:center;">Prioridade</th>
@@ -48,18 +81,8 @@
 					<th></th>
 					<th></th>
 				</tr>
-				<tr ng-repeat="item in toDo.itens | orderBy:'prioridade'">
-					<td style="text-align:center;" >{{item.prioridade}}</td>
-					<td class="done-{{item.feito}}">{{item.descricao}}</td>
-					<td>
-						<button type="button" class="btn btn-default btn-sm" ng-click="menorPrioridade(item)">
-						  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						</button>
-						<button type="button" class="btn btn-default btn-sm" ng-click="maiorPrioridade(item)">
-						  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						</button>
-					</td>
-					<td><input type="checkbox" ng-model="item.feito"></td>
+				<tr item-descricao ng-repeat="item in toDo.itens | orderBy:'prioridade'" >
+		
 				</tr>
 			</table>
 		</div>

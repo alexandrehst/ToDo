@@ -1,0 +1,11 @@
+<td style="text-align:center;" >{{item.prioridade}}</td>
+<td class="done-{{item.feito}}">{{item.descricao}}</td>
+<td><input type="checkbox" ng-model="item.feito"></td>
+<td>
+	<button type="button" class="btn btn-default btn-sm" ng-click="menorPrioridade(item)">
+		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	</button>
+	<button type="button" class="btn btn-default btn-sm" ng-click="maiorPrioridade(item)">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	</button>
+</td>
