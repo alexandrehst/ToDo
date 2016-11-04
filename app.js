@@ -1,10 +1,18 @@
 (function(){
 	var app = angular.module('todo', []);
 	
-	// Controladores
-	app.controller('TodoController', ['$scope', function($scope) {
-		this.itens = aFazer;
+ 	// Controladores
+	app.controller('TodoController', ['$scope', '$http', function($scope,$http) {
+		var toDo = this;
+		toDo.itens = [];
 		
+		// o get busca um arquivo JSON no endereco e retona um response
+		$http.get('https://todotaaps.herokuapp.com/todo').then(function(response){
+			toDo.itens = response.data;
+			console.log('Data ' + toDo.itens.length);
+			console.log(toDo.itens);
+		});
+
 		$scope.menorPrioridade = function(item){
 			if (item.prioridade>1){
 				item.prioridade--;
@@ -14,15 +22,18 @@
 		$scope.maiorPrioridade = function(item){
 			item.prioridade++
 		};
+		
 	}]);
-	
+
+
+	// A inclusão não funciona - só foi implementado o GET para a demonstração
 	app.controller('TodoFormController', ['$scope', function($scope) {	
-		$scope.itens = aFazer;
+		$scope.itens = [];
 		
 		$scope.addTodo = function() {
 			
 			$scope.itens.push( {descricao: $scope.descricao,
-							   prioridade: $scope.prioridade,
+							   prioridade: parseInt($scope.prioridade),
 							   feito:false} );
 							   
 		   $scope.descricao = '';
@@ -40,27 +51,6 @@
 	        templateUrl: 'item-descricao.html'
 	    }
 	});
-
-	
-	
-	// Dados - ser�o retirados daqui
-	var aFazer = [
-		{
-			descricao: 'Comprar leite e p�o',
-			prioridade: 1,
-			feito: false,
-		},
-		{
-			descricao: 'Estudar Angular',
-			prioridade: 1,
-			feito: false,
-		},
-		{
-			descricao: 'Jogar Battlefield',
-			prioridade: 2,
-			feito: false,
-		}
-	];
 	
 })();
 
